@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # coding=utf-8
 
 import sys
@@ -17,7 +17,7 @@ padding = "@"
 # ======================= Encrypt =================================
 
 
-def encrypt(mode, myKey, IV, input_file, output_file):
+def encrypt(mode, IV, myKey, input_file, output_file):
 
     if(mode != "ECB" and mode != "CBC" and mode != "CFB" and mode != "OFB" and mode != "CTR"):
         print "Available modes: ECB, CBC, CFB, OFB, CTR."
@@ -71,13 +71,13 @@ def encrypt(mode, myKey, IV, input_file, output_file):
 
 def main(argv):
     try:
-        opts, args = getopt.getopt(argv, "m:k:i:")
+        opts, args = getopt.getopt(argv, "m:i:k:")
     except getopt.GetoptError:
-        print "encrypt.py –m <mode> –k <key> -i <IV> <input_file> <output_file>"
+        print "encrypt.py –m <mode> -i <IV> –k <key> <input_file> <output_file>"
         sys.exit(2)
 
     if(len(args) != 2):
-        print "encrypt.py –m <mode> –k <key> -i <IV> <input_file> <output_file>"
+        print "encrypt.py –m <mode> -i <IV> –k <key> <input_file> <output_file>"
         sys.exit(2)
 
     # get input_file and output_file
@@ -87,17 +87,17 @@ def main(argv):
     # Get option
     for opt, arg in opts:
         if opt == "-h":
-            print "encrypt.py -m <mode> -k <key> -i <IV> <input_file> <output_file>"
+            print "encrypt.py -m <mode> -i <IV> -k <key> <input_file> <output_file>"
             sys.exit()
         elif opt == "-m":
             mode = arg.upper()
-        elif opt == "-k":
-            myKey = arg
         elif opt == "-i":
             IV = arg
+        elif opt == "-k":
+            myKey = arg
 
     # Run encrypt function
-    encrypt(mode, myKey, IV, input_file, output_file)
+    encrypt(mode, IV, myKey, input_file, output_file)
 
     return
 # =================================================================
