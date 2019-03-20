@@ -1,4 +1,4 @@
-# AES-encryption-by-python
+# AES-encryption-by-python-3.6
   Sử dụng python và thư viện pycrypto để viết những command sau:
 1. Mã hóa dữ liệu với thuật toán AES
   
